@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Learn Vue</title>
+</head>
+<body>
+    <div id="app" class="mx-5 my-5">
+
+        <div class="mb-3">
+            <label for="amount" class="form-label">Tip Percent</label>
+            <select class="form-select form-select-lg" aria-label="Tip Percent" id="tipPercent" v-model="tipPercent">
+                <option value=".15" selected>15 %</option>
+                <option value=".18">18 %</option>
+                <option value=".20">20 %</option>
+              </select>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control form-control-lg" id="amount" v-model="amount">
+            <label for="amount" class="form-label">Amount</label>
+        </div>
+
+        <div class="mb-3">
+            @{{ tipPercent * 100 }}%: {{ tipAmount.toFixed(2) }}
+        </div>
+
+        <p></p>
+        <p>Suggested Tip Amount: {{ suggestedTipAmount.toFixed(2) }} ({{ actualTipPercent.toFixed(2) }}%) </p>
+
+        <div class="input-group mb-3">
+            <label for="totalCost" class="col-sm-2 col-form-label">Total Cost</label>
+            <span class="input-group-text">$</span>
+            <input type="text" readonly class="form-control" id="totalCost" aria-label="Amount (to the nearest dollar)" v-model="totalCost">
+            <span class="input-group-text">.00</span>
+        </div>
+
+        <footer class="my-5">&copy; 2021 Malcaba Software</footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                tipPercent: .15,
+                amount: 21.75
+            },
+            computed: {
+                totalCost: function() {
+                    return (Number)(this.amount) + this.suggestedTipAmount
+                },
+                suggestedTipAmount: function() {
+                    let calcAmount = Math.floor((Number)(this.amount) + this.tipAmount);
+                    return calcAmount - this.amount
+                },
+                actualTipPercent: function() {
+                    let num = (this.suggestedTipAmount / this.amount ) * 100;
+                    return num
+                },
+                tipAmount: function() {
+                    return this.amount * this.tipPercent
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>
