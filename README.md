@@ -1,2 +1,3 @@
-# tip
-Tip Calculator
+# Tip Calculator
+
+Using Vue.js
