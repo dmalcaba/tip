@@ -38,10 +38,13 @@
             <span class="input-group-text">.00</span>
         </div>
 
-        <footer class="my-5">&copy; 2021 Malcaba Software</footer>
+        <div class="fixed-bottom mx-5 mb-3">
+            <hr>
+            <footer>&copy; {{ currentYear }} Malcaba Software</footer>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
         new Vue({
             el: "#app",
@@ -51,18 +54,21 @@
             },
             computed: {
                 totalCost: function() {
-                    return (Number)(this.amount) + this.suggestedTipAmount
+                    return (Number)(this.amount) + this.suggestedTipAmount;
                 },
                 suggestedTipAmount: function() {
                     let calcAmount = Math.floor((Number)(this.amount) + this.tipAmount);
-                    return calcAmount - this.amount
+                    return calcAmount - this.amount;
                 },
                 actualTipPercent: function() {
                     let num = (this.suggestedTipAmount / this.amount ) * 100;
-                    return num
+                    return num;
                 },
                 tipAmount: function() {
-                    return this.amount * this.selectedTipPercent
+                    return this.amount * this.selectedTipPercent;
+                },
+                currentYear: function() {
+                    return new Date().getFullYear();
                 }
             }
         });
