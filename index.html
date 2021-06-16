@@ -23,12 +23,13 @@
             <label for="amount" class="form-label">Amount</label>
         </div>
 
-        <div class="mb-3">
-            @{{ selectedTipPercent * 100 }}%: {{ tipAmount.toFixed(2) }}
+        <div class="alert alert-primary" role="alert">
+            <p>@{{ selectedTipPercent * 100 }}%: {{ tipAmount.toFixed(2) }}</p>
+            <hr>
+            <h5 class="mb-0">Suggested Tip Amount: $ {{ suggestedTipAmount.toFixed(2) }} | ({{ actualTipPercent.toFixed(2) }}%)</h5>
         </div>
-
         <p></p>
-        <p>Suggested Tip Amount: {{ suggestedTipAmount.toFixed(2) }} ({{ actualTipPercent.toFixed(2) }}%) </p>
+        <p></p>
 
         <div class="input-group mb-3">
             <label for="totalCost" class="col-sm-2 col-form-label">Total Cost</label>
