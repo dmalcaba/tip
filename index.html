@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Learn Vue</title>
+    <title>Tip Calculator</title>
 </head>
 <body>
     <div id="app" class="mx-5 my-5">
 
         <div class="mb-3">
             <label for="amount" class="form-label">Tip Percent</label>
-            <select class="form-select form-select-lg" aria-label="Tip Percent" id="tipPercent" v-model="tipPercent">
-                <option value=".15" selected>15 %</option>
+            <select class="form-select form-select-lg" aria-label="Tip Percent" id="tipPercent" v-model="selectedTipPercent">
+                <option value=".15">15 %</option>
                 <option value=".18">18 %</option>
                 <option value=".20">20 %</option>
               </select>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="mb-3">
-            @{{ tipPercent * 100 }}%: {{ tipAmount.toFixed(2) }}
+            @{{ selectedTipPercent * 100 }}%: {{ tipAmount.toFixed(2) }}
         </div>
 
         <p></p>
@@ -45,7 +45,7 @@
         new Vue({
             el: "#app",
             data: {
-                tipPercent: .15,
+                selectedTipPercent: '.15',
                 amount: 21.75
             },
             computed: {
@@ -61,7 +61,7 @@
                     return num
                 },
                 tipAmount: function() {
-                    return this.amount * this.tipPercent
+                    return this.amount * this.selectedTipPercent
                 }
             }
         });
